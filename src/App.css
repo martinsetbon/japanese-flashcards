@@ -1,38 +1,452 @@
-.App {
-  text-align: center;
+/* Mobile-first design */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Start Screen */
+.start-screen {
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.start-screen h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.start-screen p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.start-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 200px;
+}
+
+.review-button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 200px;
+}
+
+.home-button {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 200px;
+}
+
+.start-button:hover, .review-button:hover, .home-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.start-button:active, .review-button:active, .home-button:active {
+  transform: translateY(0);
+}
+
+/* Quiz Container */
+.quiz-container {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress Counter */
+.progress-counter {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 30px;
+  padding: 10px;
+  background: #f8f9ff;
+  border-radius: 10px;
+}
+
+/* Quiz Card */
+.quiz-card {
+  border: 2px solid #e1e5e9;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  min-height: 200px;
+}
+
+.card-upper {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px 20px;
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.japanese-word {
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-lower {
+  padding: 30px 20px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Answer Input */
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.answer-input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.answer-input:focus {
+  border-color: #667eea;
+}
+
+.answer-input::placeholder {
+  color: #999;
+}
+
+/* Answer Display */
+.answer-display {
+  text-align: center;
+  width: 100%;
+}
+
+.correct-answer {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Result Styles */
+.result-correct {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 10px;
+}
+
+.result-incorrect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkmark {
+  font-size: 60px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.cross {
+  font-size: 60px;
+  color: #f44336;
+  font-weight: bold;
+}
+
+.result-correct span {
+  color: #4CAF50;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.result-incorrect span {
+  color: #f44336;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.show-answer-btn, .submit-btn, .next-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.show-answer-btn {
+  background: #ff9800;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.submit-btn {
+  background: #4CAF50;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.next-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  width: 100%;
+}
+
+.show-answer-btn:hover, .submit-btn:hover, .next-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.show-answer-btn:active, .submit-btn:active, .next-btn:active {
+  transform: translateY(0);
+}
+
+/* Finished Screen */
+.finished-screen {
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.finished-screen h1 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.final-score {
+  margin-bottom: 30px;
+}
+
+.final-score h2 {
+  color: #667eea;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.final-score p {
+  color: #666;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.finished-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Review Screen */
+.review-screen {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.review-screen h1 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.review-screen p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.vocabulary-list {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.vocabulary-item {
+  background: #f8f9ff;
+  border: 1px solid #e1e5e9;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vocabulary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.japanese-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #667eea;
+  flex: 1;
+  text-align: left;
+}
+
+.english-text {
+  font-size: 16px;
+  color: #333;
+  flex: 1;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .app {
+    padding: 40px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .quiz-container, .start-screen, .finished-screen {
+    max-width: 500px;
+  }
+  
+  .review-screen {
+    max-width: 600px;
+  }
+  
+  .japanese-word {
+    font-size: 28px;
+  }
+  
+  .answer-input {
+    font-size: 18px;
+  }
+  
+  .correct-answer {
+    font-size: 20px;
+  }
+  
+  .vocabulary-item {
+    padding: 20px;
+  }
+  
+  .japanese-text {
+    font-size: 20px;
+  }
+  
+  .english-text {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .quiz-container, .start-screen, .finished-screen {
+    max-width: 600px;
+  }
+  
+  .review-screen {
+    max-width: 700px;
+  }
+  
+  .japanese-word {
+    font-size: 32px;
   }
 }
