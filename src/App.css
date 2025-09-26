@@ -83,6 +83,20 @@ body {
   max-width: 200px;
 }
 
+.multiple-choice-button {
+  background: #9C27B0;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 200px;
+}
+
 .home-button {
   background: #ff9800;
   color: white;
@@ -97,12 +111,12 @@ body {
   max-width: 200px;
 }
 
-.start-button:hover, .review-button:hover, .home-button:hover {
+.start-button:hover, .review-button:hover, .home-button:hover, .multiple-choice-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.start-button:active, .review-button:active, .home-button:active {
+.start-button:active, .review-button:active, .home-button:active, .multiple-choice-button:active {
   transform: translateY(0);
 }
 
@@ -382,12 +396,22 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+.japanese-section {
+  flex: 1;
+  text-align: left;
+}
+
 .japanese-text {
   font-size: 18px;
   font-weight: 600;
   color: #667eea;
-  flex: 1;
-  text-align: left;
+  margin-bottom: 4px;
+}
+
+.hiragana-text {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
 }
 
 .english-text {
@@ -432,6 +456,10 @@ body {
     font-size: 20px;
   }
   
+  .hiragana-text {
+    font-size: 16px;
+  }
+  
   .english-text {
     font-size: 18px;
   }
@@ -448,5 +476,63 @@ body {
   
   .japanese-word {
     font-size: 32px;
+  }
+}
+
+/* Multiple Choice Styles */
+.multiple-choice-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.choice-label {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9ff;
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 16px;
+}
+
+.choice-label:hover {
+  background: #e8f0fe;
+  border-color: #9C27B0;
+  transform: translateY(-1px);
+}
+
+.choice-label:has(.choice-radio:checked) {
+  background: #e8f0fe;
+  border-color: #9C27B0;
+  box-shadow: 0 2px 8px rgba(156, 39, 176, 0.2);
+}
+
+.choice-radio {
+  margin-right: 15px;
+  width: 18px;
+  height: 18px;
+  accent-color: #9C27B0;
+}
+
+.choice-text {
+  flex: 1;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Responsive Multiple Choice */
+@media (min-width: 768px) {
+  .choice-label {
+    padding: 20px;
+    font-size: 18px;
+  }
+  
+  .choice-radio {
+    width: 20px;
+    height: 20px;
   }
 }
